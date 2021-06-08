@@ -4,6 +4,7 @@ const app = new Vue({
         api_key: "eecb915ee69c021ca80167a8f3f1f0b5",
         query: "",
         film: null,
+        serieTv: null,
     },
     methods: {
         searchFilm() {
@@ -13,7 +14,15 @@ const app = new Vue({
 
                     console.log(response.data.results);
                     this.film = response.data.results;
+                    // this.film = this.film.map()
+                    // console.log(this.film.map(this.film.original_languages));
+                });
 
+
+            axios.get('https://api.themoviedb.org/3/search/tv?api_key=' + this.api_key + '&query=' + this.query)
+                .then(response => {
+                    console.log(response.data.results);
+                    this.serieTv = response.data.results;
                 })
         }
     },
