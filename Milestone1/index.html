@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolflix</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav>
+            <input type="text" name="" id="" v-model="query">
+            <button @click="searchFilm">Cerca</button>
+        </nav>
+
+        <section>
+            <div v-for="film in film">
+                <span> <strong>Titolo:</strong> {{film.title}}</span>
+                <span><strong>Titolo originale:</strong> {{film.original_title}}</span>
+                <span><strong>Lingua:</strong> {{film.original_language}}</span>
+                <span><strong>Voto:</strong> {{film.vote_average}}</span>
+
+
+            </div>
+        </section>
+
+    </div>
+
+
+
+    <!-- CDN VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- CDN AXIOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- File JS -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
