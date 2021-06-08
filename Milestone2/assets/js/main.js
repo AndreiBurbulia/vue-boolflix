@@ -12,17 +12,30 @@ const app = new Vue({
             axios.get('https://api.themoviedb.org/3/search/movie?api_key=' + this.api_key + '&query=' + this.query)
                 .then(response => {
 
-                    console.log(response.data.results);
                     this.film = response.data.results;
-                    // this.film = this.film.map()
-                    // console.log(this.film.map(this.film.original_languages));
+
+                    this.film.forEach(element => {
+                        if (element.original_language === "en") {
+                            element.original_language = "gb"
+                        } else if (element.original_language === "ja") {
+                            element.original_language = "jp"
+                        }
+                    });
+
                 });
 
 
             axios.get('https://api.themoviedb.org/3/search/tv?api_key=' + this.api_key + '&query=' + this.query)
                 .then(response => {
-                    console.log(response.data.results);
                     this.serieTv = response.data.results;
+
+                    this.serieTv.forEach(element => {
+                        if (element.original_language === "en") {
+                            element.original_language = "gb"
+                        } else if (element.original_language === "ja") {
+                            element.original_language = "jp"
+                        }
+                    });
                 })
         }
     },
