@@ -11,6 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -26,10 +29,16 @@
             <h2>Film</h2>
 
             <div v-for="film in film">
+                <img class="copertina_film" :src="'https://image.tmdb.org/t/p/w500' + film.poster_path">
                 <span> <strong>Titolo:</strong> {{film.title}}</span>
                 <span><strong>Titolo originale:</strong> {{film.original_title}}</span>
                 <span><strong>Lingua:</strong> {{film.original_language}}</span>
-                <span><strong>Voto:</strong> {{film.vote_average}}</span>
+                <span>
+                    <strong>Voto:</strong>
+                    <strong v-if="film.vote_average == 0">0</strong>
+                    <i class="fas fa-star" v-for="x in film.vote_average" v-else></i>
+
+                </span>
                 <span>
                     <strong>Nazionalità:</strong>
                     <img :src="'https://flagcdn.com/40x30/'+ film.original_language+ '.png'" width=" 40" height="30">
@@ -40,6 +49,7 @@
 
             <h2>Serie Tv</h2>
             <div v-for="serie in serieTv">
+                <img class="copertina_film" :src="'https://image.tmdb.org/t/p/w500' + serie.poster_path" alt="">
                 <span> <strong>Titolo:</strong> {{serie.name}}</span>
                 <span><strong>Titolo originale:</strong> {{serie.original_name}}</span>
                 <span><strong>Lingua:</strong> {{serie.original_language}}</span>
