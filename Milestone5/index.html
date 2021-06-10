@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolflix</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <nav>
+            <span>BOOLFLIX</span>
+
+            <input type="text" v-model="query" @keyup.enter="searchFilm" placeholder="Search">
+            <!-- <button @click="searchFilm">Cerca</button> -->
+        </nav>
+
+        <section>
+            <h2>Film</h2>
+
+            <div class="card_container">
+                <div class="card" v-for="film in film">
+
+                    <img v-if="film.poster_path != null" class="copertina_film" :src="'https://image.tmdb.org/t/p/w500' + film.poster_path">
+                    <img v-else class="copertina_film" src="./assets/img/no_image.jpg" alt="">
+                    <div class="film_info">
+                        <span> <strong>Titolo:</strong> {{film.title}}</span>
+                        <span><strong>Titolo originale:</strong> {{film.original_title}}</span>
+                        <span><strong>Lingua:</strong> {{film.original_language}}</span>
+                        <span><strong>Anno Uscita:</strong> {{film.release_date}}</span>
+                        <span>
+                            <strong>Voto:</strong>
+                            <strong v-if="film.vote_average == 0">0</strong>
+                            <i class="fas fa-star" v-for="x in film.vote_average" v-else></i>
+
+                        </span>
+                        <span>
+                            <strong>Overview:</strong>{{film.overview}}</span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <h2>Serie Tv</h2>
+
+            <div class="card_container">
+                <div class="card" v-for="serie in serieTv">
+                    <img v-if="serie.poster_path != null" class="copertina_film" :src="'https://image.tmdb.org/t/p/w500' + serie.poster_path">
+                    <img v-else class="copertina_film" src="./assets/img/no_image.jpg" alt="">
+
+                    <div class="film_info">
+                        <span> <strong>Titolo:</strong> {{serie.name}}</span>
+                        <span><strong>Titolo originale:</strong> {{serie.original_name}}</span>
+                        <span><strong>Lingua:</strong> {{serie.original_language}}</span>
+                        <span>
+
+                            <strong>Voto:</strong>
+                            <strong v-if="serie.vote_average == 0">0</strong>
+                            <i class="fas fa-star" v-for="x in serie.vote_average" v-else></i>
+                        </span>
+                        <span><strong>Overview:</strong>{{serie.overview}}</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section>
+
+    </div>
+
+
+    <!-- Day.js -->
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
+    <!-- CDN VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- CDN AXIOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- File JS -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
