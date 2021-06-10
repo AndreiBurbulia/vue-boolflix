@@ -13,15 +13,10 @@ const app = new Vue({
                 .then(response => {
 
                     this.film = response.data.results;
-                    // console.log(response.data.results.release_date);
-                    // this.film = this.film.sort((a, b) => b.release_date - a.release_date);
 
                     this.film.forEach(element => {
                         element.vote_average = parseInt(element.vote_average / 2);
-                        console.log(element.release_date);
                         element.release_date = dayjs(element.release_date).format('YYYY')
-                        console.log(element.release_date);
-
                     })
 
                     this.film = this.film.sort((a, b) => b.release_date - a.release_date)
@@ -33,8 +28,9 @@ const app = new Vue({
                 .then(response => {
                     this.serieTv = response.data.results;
 
+                    this.serieTv = this.serieTv.sort((a, b) => b.vote_average - a.vote_average)
+
                     this.serieTv.forEach(element => {
-                        // console.log(element.vote_average);
                         element.vote_average = parseInt(element.vote_average / 2);
 
                     })
